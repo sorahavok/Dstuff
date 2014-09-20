@@ -1,5 +1,6 @@
 package sora.havok;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +21,16 @@ public class Java8Stuff implements Runnable {
 	private static final long NUM_SODAS = 20;
 
 	public static void main(String[] args) {
-		new Java8Stuff().run();
+		new FizzBuzz(new ArrayList<Buzzer>(){{
+			add(new Buzzer("Razz", 3));
+			add(new Buzzer("Tezz", 4));
+			add(new Buzzer("Fizz", 5));
+			add(new Buzzer("Lozz", 6));
+			add(new Buzzer("Buzz", 7));
+		}}).play(30);
+		
+		
+//		new Java8Stuff().run();
 	}
 	
 	@Override
@@ -56,13 +66,7 @@ public class Java8Stuff implements Runnable {
 	}
 	
 	private void generateClasses() {
-		final PojoGen gen = new PojoGen();
-
-		final Map<String, String> fizBuzFields = new LinkedHashMap<>();
-		fizBuzFields.put("max", "int");
-		gen.genClass("FizzBuzz", "sora.havok", fizBuzFields);
-
-		
+		final PojoGen gen = new PojoGen();	
 		
 		final Map<String, String> sodaFields = new LinkedHashMap<>();
 		sodaFields.put("name", "String");
